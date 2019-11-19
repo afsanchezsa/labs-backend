@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."course"
     "course_id"      SERIAL       NOT NULL,
     "course_name"    VARCHAR(100) NOT NULL,
     "duration_hours" INT          NOT NULL,
+    "cost"           DECIMAL      NOT NULL,
     PRIMARY KEY ("course_id")
 );
 
@@ -76,6 +77,45 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."period"
     "period_name" VARCHAR(20) NOT NULL,
     PRIMARY KEY ("period_id")
 );
+-- ----------------------------------- --
+-- Table "labs"."public"."state" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."state"
+(
+    "state_id"       SERIAL NOT NULL,
+    "name   "        VARCHAR (20)   NOT NULL,
+    PRIMARY KEY ("state_id")
+
+);
+-- ----------------------------------- --
+-- Table "labs"."public"."payment_method" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."payment_method"
+(
+    "payment_method_id" SERIAL NOT NULL,
+    "name"        INT    NOT NULL,
+
+    PRIMARY KEY ("payment_method_id")
+
+
+);
+-- ----------------------------------- --
+-- Table "labs"."public"."pay" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."pay"
+(
+    "pay_id" SERIAL NOT NULL,
+    "payment_method_id"        INT    NOT NULL,
+    "balance_to_pay"      DECIMAL    NOT NULL,
+    PRIMARY KEY ("pay_id"),
+
+    CONSTRAINT "fk_payment_method"
+        FOREIGN KEY ("payment_method_id")
+            REFERENCES "labs"."public"."payment_method" ("payment_method_id")
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+
+);
 
 
 -- ----------------------------------- --
@@ -88,6 +128,8 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."association"
     "role_id"        INT    NOT NULL,
     "course_id"      INT    NOT NULL,
     "period_id"      INT    NOT NULL,
+    "state_id"       INT    NOT NULL,
+    "pay_id"         INT    NOT NULL,
     PRIMARY KEY ("association_id"),
     CONSTRAINT "fk_user_role"
         FOREIGN KEY ("user_id", "role_id")
@@ -103,12 +145,22 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."association"
         FOREIGN KEY ("period_id")
             REFERENCES "labs"."public"."period" ("period_id")
             ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT "fk_state"
+        FOREIGN KEY ("state_id")
+            REFERENCES "labs"."public"."state"("state_id")
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+            CONSTRAINT "fk_pay"
+        FOREIGN KEY ("pay_id")
+            REFERENCES "labs"."public"."pay"("pay_id")
+            ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
 CREATE INDEX "idx_association_user_role_id" ON "labs"."public"."association" ("user_id" ASC, "role_id" ASC);
 CREATE INDEX "idx_association_course_id" ON "labs"."public"."association" ("course_id" ASC);
 CREATE INDEX "idx_association_period_id" ON "labs"."public"."association" ("period_id" ASC);
-
+CREATE INDEX "idx_association_state_id" ON "labs"."public"."association" ("state_id" ASC);
 
 -- ----------------------------- --
 -- Table "labs"."public"."grade" --
@@ -128,6 +180,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."grade"
 );
 CREATE UNIQUE INDEX "unq_grade_association" ON "labs"."public"."grade" ("association_id");
 CREATE INDEX "idx_grade_association_id" ON "labs"."public"."grade" ("association_id" ASC);
+
 
 
 -- ------------------------------------------------------------------------------------------------------------------ --
