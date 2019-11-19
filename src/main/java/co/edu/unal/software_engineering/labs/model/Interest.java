@@ -9,8 +9,10 @@ public class Interest extends RecargoDecorator {
     }
 
 
+
+
     @Override
-    public double MoneyToPay() {
-        return paymentMethod.MoneyToPay()*(1-this.discountToApply);
+    public double MoneyToPay(double amount) {
+        return 0;
     }
 }

@@ -50,6 +50,13 @@ public class Association implements Serializable{
     @OneToOne( mappedBy = "association" )
     private Grade grade;
 
+    @ManyToOne
+    @JoinColumn(name="state_id")
+    private State state;
+
+    @OneToOne
+    @JoinColumn(name="pay_id")
+    private Pay pay;
     /**
      * Constructors
      */
