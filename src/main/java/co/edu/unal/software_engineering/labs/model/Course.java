@@ -33,6 +33,8 @@ public class Course implements Serializable{
     @Column( name = "duration_hours" )
     private Integer durationHours;
 
+    @Column (name="cost")
+    private Integer cost;
     //bi-directional many-to-one association to Association
     @JsonIgnore
     @OneToMany( mappedBy = "course" )

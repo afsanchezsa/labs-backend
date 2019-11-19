@@ -133,6 +133,20 @@ public class Association implements Serializable{
         this.userRole = userRole;
     }
 
+    public State getState() { return state;}
+
+    public Pay getPay() {
+        return pay;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void setPay(Pay pay) {
+        this.pay = pay;
+    }
+
     /**
      * Methods
      */

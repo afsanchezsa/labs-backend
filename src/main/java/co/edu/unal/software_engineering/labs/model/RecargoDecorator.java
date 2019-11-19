@@ -1,6 +1,6 @@
 package co.edu.unal.software_engineering.labs.model;
 
-public abstract class RecargoDecorator implements PaymentMethod {
+public abstract class RecargoDecorator extends PaymentMethod {
     protected PaymentMethod paymentMethod;
 
     protected RecargoDecorator(PaymentMethod paymentMethod){

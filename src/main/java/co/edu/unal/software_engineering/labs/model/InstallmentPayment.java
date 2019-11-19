@@ -1,13 +1,46 @@
 package co.edu.unal.software_engineering.labs.model;
 
-public class InstallmentPayment implements PaymentMethod {
+import java.util.List;
+
+public class InstallmentPayment extends PaymentMethod {
     private static double interest=0.05;
     public InstallmentPayment(){
      }
 
 
     @Override
-    public double MoneyToPay(double amount) {
-    return amount*(1-interest);
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+    this.id=id;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setName(String name) {
+    this.name=name;
+    }
+
+    @Override
+    public List<Pay> getPays() {
+        return this.Pays;
+    }
+
+    @Override
+    public void setPays(List<Pay> pays) {
+    this.Pays=pays;
+    }
+
+
+    @Override
+    public Integer MoneyToPay(Integer amount) {
+        return(int)( amount*(1-interest));
     }
 }

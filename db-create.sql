@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."course"
     "course_id"      SERIAL       NOT NULL,
     "course_name"    VARCHAR(100) NOT NULL,
     "duration_hours" INT          NOT NULL,
-    "cost"           DECIMAL      NOT NULL,
+    "cost"           INT     NOT NULL,
     PRIMARY KEY ("course_id")
 );
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."state"
 CREATE TABLE IF NOT EXISTS "labs"."public"."payment_method"
 (
     "payment_method_id" SERIAL NOT NULL,
-    "name"        INT    NOT NULL,
+    "name"        VARCHAR(30)    NOT NULL,
 
     PRIMARY KEY ("payment_method_id")
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."pay"
 (
     "pay_id" SERIAL NOT NULL,
     "payment_method_id"        INT    NOT NULL,
-    "balance_to_pay"      DECIMAL    NOT NULL,
+    "balance_to_pay"      INT  NOT NULL,
     PRIMARY KEY ("pay_id"),
 
     CONSTRAINT "fk_payment_method"

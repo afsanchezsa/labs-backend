@@ -1,16 +1,40 @@
 package co.edu.unal.software_engineering.labs.model;
 
-public class PartialPayment implements State {
-    public static Integer id=2;
-    public static String name="partialpayment";
+import java.util.List;
+
+public class PartialPayment extends State {
+    public PartialPayment(){
+        id=2;
+        name="partialpayment";
+    }
 
     @Override
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    @Override
+    List<Association> getAssociations() {
+        return this.associations;
+    }
+
+    @Override
+    public void setId(Integer id) {
+    this.id=id;
+    }
+
+    @Override
+    public void setName(String name) {
+    this.name=name;
+    }
+
+    @Override
+    public void setAssociations(List<Association> associations) {
+    this.associations=associations;
     }
 }
