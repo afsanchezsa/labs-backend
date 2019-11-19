@@ -76,8 +76,37 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."period"
     "period_name" VARCHAR(20) NOT NULL,
     PRIMARY KEY ("period_id")
 );
+-- ----------------------------------- --
+-- Table "labs"."public"."payment_method" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."payment_method"
+(
+    "payment_method_id" SERIAL NOT NULL,
+    "name"        VARCHAR(30)    NOT NULL,
+    PRIMARY KEY ("payment_method_id")
+    );
+    -- ----------------------------------- --
+-- Table "labs"."public"."state" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."state"
+(
+    "state_id" SERIAL NOT NULL,
+    "name"        VARCHAR(20)    NOT NULL,
 
+    PRIMARY KEY ("state_id")
 
+);
+-- ----------------------------------- --
+-- Table "labs"."public"."balance" --
+-- ----------------------------------- --
+CREATE TABLE IF NOT EXISTS "labs"."public"."balance"
+(
+    "balance_id" SERIAL NOT NULL,
+    "balance_payed"        INT    NOT NULL,
+    "total_cost"        INT    NOT NULL,
+    PRIMARY KEY("balance_id")
+
+);
 -- ----------------------------------- --
 -- Table "labs"."public"."association" --
 -- ----------------------------------- --
@@ -88,6 +117,9 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."association"
     "role_id"        INT    NOT NULL,
     "course_id"      INT    NOT NULL,
     "period_id"      INT    NOT NULL,
+    "payment_method_id" INT NOT NULL,
+    "state_id" INT NOT NULL,
+    "balance_id" INT NOT NULL,
     PRIMARY KEY ("association_id"),
     CONSTRAINT "fk_user_role"
         FOREIGN KEY ("user_id", "role_id")
@@ -102,6 +134,21 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."association"
     CONSTRAINT "fk_period"
         FOREIGN KEY ("period_id")
             REFERENCES "labs"."public"."period" ("period_id")
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT "fk_payment_method"
+        FOREIGN KEY ("payment_method_id")
+            REFERENCES "labs"."public"."payment_method" ("payment_method_id")
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT "fk_state"
+        FOREIGN KEY ("state_id")
+            REFERENCES "labs"."public"."state" ("state_id")
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT "fk_balance"
+        FOREIGN KEY ("balance_id")
+            REFERENCES "labs"."public"."balance" ("balance_id")
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
