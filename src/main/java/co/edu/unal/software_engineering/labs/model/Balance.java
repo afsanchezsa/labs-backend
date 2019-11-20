@@ -58,6 +58,6 @@ private Association association;
     }
 
     public double getPercentage(){
-        return this.balance_payed/this.total_cost;
+        return ((double)this.balance_payed)/this.total_cost;
     }
 }
