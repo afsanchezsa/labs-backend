@@ -1,4 +1,4 @@
-package co.edu.unal.software_engineering.labs.model.Objects.Factory;
+package co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory;
 
 import co.edu.unal.software_engineering.labs.model.Balance;
 import co.edu.unal.software_engineering.labs.model.Interfaces.PaymentState;

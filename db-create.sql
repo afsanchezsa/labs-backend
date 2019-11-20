@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS "labs"."public"."course"
     "course_id"      SERIAL       NOT NULL,
     "course_name"    VARCHAR(100) NOT NULL,
     "duration_hours" INT          NOT NULL,
+    "cost" INT NOT NULL,
     PRIMARY KEY ("course_id")
 );
 
@@ -201,3 +202,30 @@ INSERT INTO "labs"."public"."role" (role_id, role_name)
 
 INSERT INTO "labs"."public"."period" (period_name)
     VALUES ('Periodo 2019-02');
+
+
+INSERT INTO "labs"."public"."user"("username","password","names","surnames")
+    VALUES('afsanchez','1234','Andres Felipe','Sanchez Sanchez');
+INSERT INTO "labs"."public"."user_role"
+VALUES(1,1)
+;
+INSERT INTO "labs"."public"."user"("username","password","names","surnames")
+    VALUES('est','1234','Estudiante','1');
+INSERT INTO "labs"."public"."user_role"
+VALUES(2,2)
+;
+INSERT INTO "labs"."public"."course"("course_name","duration_hours","cost")
+VALUES('ALGEBRA',100,1000);
+INSERT INTO "labs"."public"."payment_method"("name")VALUES('cashpayment');
+INSERT INTO "labs"."public"."payment_method"("name")VALUES('installmentpayment');
+INSERT INTO "labs"."public"."state"("name")VALUES('paidout');
+INSERT INTO "labs"."public"."state"("name")VALUES('partialpayment');
+INSERT INTO "labs"."public"."state"("name")VALUES('outstanding');
+INSERT INTO "labs"."public"."balance"("balance_payed","total_cost") VALUES(0,1000);
+INSERT INTO "labs"."public"."association"("user_id","role_id","course_id","period_id","payment_method_id","state_id","balance_id")
+VALUES (2,2,1,1,2,3,1);
+
+
+--INSERT INTO "labs"."public"."association"("user_id","role_id","course_id","period_id","payment_method_id")
+--VALUES (2,2,1,1);
+

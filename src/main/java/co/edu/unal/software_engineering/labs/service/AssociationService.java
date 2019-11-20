@@ -22,4 +22,5 @@ public class AssociationService{
         Association association = new Association( user, role, course, period );
         save( association );
     }
+    public Association findById(Integer id ){return this.associationRepository.findById(id).orElse(null);}
 }

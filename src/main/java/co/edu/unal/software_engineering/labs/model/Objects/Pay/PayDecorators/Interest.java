@@ -5,7 +5,7 @@ import co.edu.unal.software_engineering.labs.model.Objects.Pay.Abstract.PayDecor
 
 public class Interest extends PayDecorator {
     private double value;
-    protected Interest(Pay pay,double value) {
+    public Interest(Pay pay, double value) {
         super(pay);
         this.value=value;
     }

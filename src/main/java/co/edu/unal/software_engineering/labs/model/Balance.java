@@ -9,9 +9,9 @@ import java.util.List;
 @Table (name="balance",schema ="public")
 public class Balance {
     @Id
-    @SequenceGenerator( name = "PAYMENT_METHOD_ID_GENERATOR",
-            sequenceName = "public.payment_method_payment_method_id_seq", allocationSize = 1 )
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "PAYMENT_METHOD_ID_GENERATOR" )
+    @SequenceGenerator( name = "BALANCE_ID_GENERATOR",
+            sequenceName = "public.balance_balance_id_seq", allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "BALANCE_ID_GENERATOR" )
     @Column( name = "balance_id" )
 private Integer id;
 @Column(name = "balance_payed")
@@ -24,7 +24,7 @@ private Association association;
     public Balance(Integer total_cost) {
         this.total_cost = total_cost;
     }
-
+    public Balance(){}
     public Integer getId() {
         return id;
     }

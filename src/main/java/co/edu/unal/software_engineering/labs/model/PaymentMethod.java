@@ -20,7 +20,7 @@ public class PaymentMethod {
     @OneToMany(mappedBy = "paymentMethod")//en mapped by va el nombre de la variable que referencia a payment method en el modelo associatons(no el nombre de la columna)
     private List<Association> associations;
 
-
+    public PaymentMethod(){}
     public PaymentMethod(Integer id, String name) {
         this.id = id;
         this.name = name;

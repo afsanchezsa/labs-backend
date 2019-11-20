@@ -20,6 +20,7 @@ private String name;
 @OneToMany(mappedBy = "state")
 private List<Association> associations;
 
+public State(){}
     public State(String name) {
         this.name = name;
     }
