@@ -29,7 +29,7 @@ public class Association implements Serializable{
 
     //bi-directional many-to-one association to Course
     @ManyToOne
-    @JoinColumn( name = "course_id" )
+    @JoinColumn( name = "course_id" )//Join colum siempre en la entidad que tiene la llave foranea
     private Course course;
 
     //bi-directional many-to-one association to Period
@@ -50,6 +50,15 @@ public class Association implements Serializable{
     @OneToOne( mappedBy = "association" )
     private Grade grade;
 
+    @ManyToOne
+    @JoinColumn(name="payment_method_id")
+    private PaymentMethod paymentMethod;
+    @ManyToOne
+    @JoinColumn(name="state_id")
+    private State state;
+    @OneToOne
+    @JoinColumn(name="balance_id")
+    private Balance balance;
     /**
      * Constructors
      */
@@ -125,6 +134,18 @@ public class Association implements Serializable{
     void setUserRole( UserRole userRole ){
         this.userRole = userRole;
     }
+
+    public PaymentMethod getPaymentMethod() {return this.paymentMethod; }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {this.paymentMethod = paymentMethod;}
+
+    public State getState() {return this.state;}
+
+    public void setState(State state) {this.state = state;}
+
+    public Balance getBalance() { return this.balance;}
+
+    public void setBalance(Balance balance) {this.balance = balance;}
 
     /**
      * Methods
