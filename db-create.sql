@@ -1,5 +1,11 @@
+
+
+
 DROP TABLE IF EXISTS "labs"."public"."grade";
 DROP TABLE IF EXISTS "labs"."public"."association";
+DROP TABLE IF EXISTS "labs"."public"."payment_method";
+DROP TABLE IF EXISTS "labs"."public"."state";
+DROP TABLE IF EXISTS "labs"."public"."balance";
 DROP TABLE IF EXISTS "labs"."public"."course";
 DROP TABLE IF EXISTS "labs"."public"."user_role";
 DROP TABLE IF EXISTS "labs"."public"."user";
