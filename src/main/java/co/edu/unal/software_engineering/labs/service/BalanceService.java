@@ -15,4 +15,6 @@ public class BalanceService {
     public void save(Balance balance){
        this.balanceRepository.save(balance);
     }
+    public boolean correctMoney(int money){return money>=0;}
+    public boolean isValidDiscount(Balance balance,int money){return balance.getTotal_cost()-balance.getBalance_payed()>=money;}
 }

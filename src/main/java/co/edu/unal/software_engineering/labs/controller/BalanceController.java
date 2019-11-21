@@ -2,13 +2,12 @@ package co.edu.unal.software_engineering.labs.controller;
 
 import co.edu.unal.software_engineering.labs.model.Association;
 import co.edu.unal.software_engineering.labs.model.Balance;
-import co.edu.unal.software_engineering.labs.model.Interfaces.Pay;
-import co.edu.unal.software_engineering.labs.model.Interfaces.PaymentState;
-import co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory.FactoryPaymentAbstractFactory;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Interfaces.Pay;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Interfaces.PaymentState;
+
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory.PayFactory;
-import co.edu.unal.software_engineering.labs.model.PaymentMethod;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory.PaymentStateFactory;
 import co.edu.unal.software_engineering.labs.model.State;
-import co.edu.unal.software_engineering.labs.repository.StateRepository;
 import co.edu.unal.software_engineering.labs.service.AssociationService;
 import co.edu.unal.software_engineering.labs.service.BalanceService;
 import co.edu.unal.software_engineering.labs.service.StateService;
@@ -33,32 +32,26 @@ public class BalanceController {
     }
 
     @PostMapping( value = { "/pago/{associationId}/{money}" } )
-    public ResponseEntity registerNewUser(@PathVariable Integer associationId, @PathVariable Integer money ){
- //Association as=associationService.findById(associationId);
+    public ResponseEntity registerPay(@PathVariable Integer associationId, @PathVariable Integer money ){
 
-
-        //System.out.println(as.getId());
            Association association=associationService.findById(associationId);
-        if(money<0){
+        if(!balanceService.correctMoney(money)){
             return new ResponseEntity( HttpStatus.BAD_REQUEST );
         }
-
         Pay pay= PayFactory.getPay(association.getPaymentMethod().getName(),money);
         Balance balance=association.getBalance();
-        System.out.println(balance.toString());
+        if(!balanceService.isValidDiscount(balance,pay.getAmountToDiscount())){
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
         balance.setBalance_payed(balance.getBalance_payed()+pay.getAmountToDiscount());
-
-        PaymentState state=FactoryPaymentAbstractFactory.getState(balance);
+        PaymentState state= PaymentStateFactory.getState(balance);
         State newState= this.stateService.findByName(state.getName());
-        System.out.println("the state is :"+newState.getName());
-        System.out.println(balance.getBalance_payed());
-        System.out.println(balance.getPercentage());
-        System.out.println(state.getName());
         association.setState(newState);
         associationService.save(association);
-        return new ResponseEntity(HttpStatus.CREATED);
+
+        return new ResponseEntity(balance,HttpStatus.OK);
 
 
-        //return new ResponseEntity(HttpStatus.CREATED);
+
     }
 }

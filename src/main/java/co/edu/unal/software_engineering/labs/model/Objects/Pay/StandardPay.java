@@ -1,6 +1,6 @@
 package co.edu.unal.software_engineering.labs.model.Objects.Pay;
 
-import co.edu.unal.software_engineering.labs.model.Interfaces.Pay;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Interfaces.Pay;
 
 public class StandardPay implements Pay {
     private int amount;

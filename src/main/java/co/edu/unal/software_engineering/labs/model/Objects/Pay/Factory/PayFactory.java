@@ -1,6 +1,6 @@
 package co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory;
 
-import co.edu.unal.software_engineering.labs.model.Interfaces.Pay;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Interfaces.Pay;
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.PayDecorators.Interest;
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.StandardPay;
 

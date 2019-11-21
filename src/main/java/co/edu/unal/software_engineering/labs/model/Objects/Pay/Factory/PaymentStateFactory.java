@@ -1,12 +1,12 @@
 package co.edu.unal.software_engineering.labs.model.Objects.Pay.Factory;
 
 import co.edu.unal.software_engineering.labs.model.Balance;
-import co.edu.unal.software_engineering.labs.model.Interfaces.PaymentState;
+import co.edu.unal.software_engineering.labs.model.Objects.Pay.Interfaces.PaymentState;
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.State.OutStanding;
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.State.PaidOut;
 import co.edu.unal.software_engineering.labs.model.Objects.Pay.State.PartialPayment;
 
-public  class FactoryPaymentAbstractFactory {
+public  class PaymentStateFactory {
     private  static PaymentState paidOut;
     private static PaymentState partialPayment;
     private static PaymentState outStanding;
