@@ -44,7 +44,7 @@ public class RoleServiceTest{
         Role teacher = roleService.findById( Role.getTeacher( ).getId( ) );
         assertEquals( student, Role.getStudent( ) );
         assertNotEquals( teacher, Role.getTeacher( ) );
-
+//fail
         assertEquals( student, Role.getTeacher( ) );
         assertEquals( teacher, Role.getStudent( ) );
     }
