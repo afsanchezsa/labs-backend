@@ -46,7 +46,7 @@ public class RoleServiceTest{
         assertNotEquals( teacher, Role.getTeacher( ) );
 
         assertNotEquals( student, Role.getTeacher( ) );
-        assertNotEquals( teacher, Role.getStudent( ) );
+        assertEquals( teacher, Role.getStudent( ) );
     }
 
 }
