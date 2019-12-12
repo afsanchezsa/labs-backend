@@ -24,7 +24,7 @@ public class RoleServiceTest{
     static class RoleServiceTestImplTestContextConfiguration{
         @Autowired
           private RoleRepository roleRepository;
-
+//
         @Bean
         public RoleService roleService( ) {
             return new RoleService( roleRepository );
