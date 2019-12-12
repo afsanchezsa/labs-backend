@@ -23,10 +23,10 @@ public class RoleServiceTest{
     @TestConfiguration
     static class RoleServiceTestImplTestContextConfiguration{
         @Autowired
-        private RoleRepository roleRepository;
+           private RoleRepository roleRepository;
 //
         @Bean
-        public RoleService roleService( ) {//hello
+           public RoleService roleService( ) {//hello
             return new RoleService( roleRepository );
         }
     }
