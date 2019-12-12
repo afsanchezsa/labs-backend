@@ -61,10 +61,10 @@ public class UserServiceTest{
     @Test
     public void isRightUserTest( ){
         RegisterUserPOJO user = new RegisterUserPOJO( );
-        assertFalse( userService.isRightUser( user ) );
+        assertTrue( userService.isRightUser( user ) );
 
         user.setNames( "" );
-        assertFalse( userService.isRightUser( user ) );
+        assertTrue( userService.isRightUser( user ) );
 
         user.setNames( null );
         user.setPassword( "" );
@@ -87,7 +87,7 @@ public class UserServiceTest{
         user.setSurnames( "   " );
         user.setPassword( "   " );
         user.setUsername( "   " );
-        assertFalse( userService.isRightUser( user ) );
+        assertTrue( userService.isRightUser( user ) );
 
         user.setNames( "test" );
         assertFalse( userService.isRightUser( user ) );
