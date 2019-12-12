@@ -88,7 +88,7 @@ public class UserServiceTest{
         user.setPassword( "   " );
         user.setUsername( "   " );
         assertFalse( userService.isRightUser( user ) );
-
+//this comment is for pull request test
         user.setNames( "test" );
         assertFalse( userService.isRightUser( user ) );
 

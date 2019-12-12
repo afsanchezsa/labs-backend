@@ -23,8 +23,8 @@ public class RoleServiceTest{
     @TestConfiguration
     static class RoleServiceTestImplTestContextConfiguration{
         @Autowired
-        private RoleRepository roleRepository;
-
+          private RoleRepository roleRepository;
+//
         @Bean
         public RoleService roleService( ) {
             return new RoleService( roleRepository );
@@ -44,8 +44,8 @@ public class RoleServiceTest{
         Role teacher = roleService.findById( Role.getTeacher( ).getId( ) );
         assertEquals( student, Role.getStudent( ) );
         assertEquals( teacher, Role.getTeacher( ) );
-
-        assertNotEquals( student, Role.getTeacher( ) );
+//this is a good test !!
+           assertNotEquals( student, Role.getTeacher( ) );
         assertNotEquals( teacher, Role.getStudent( ) );
     }
 
